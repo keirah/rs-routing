@@ -1,9 +1,9 @@
- /* [%bs.raw {|require('./index.css')|}]; */
+  [%bs.raw {|require('./index.css')|}]; 
 
 type routes = 
   | HomeRoute
   | UserRoute int;
-/* external register_service_worker : unit => unit = "" [@@bs.module "./registerServiceWorker"];  */
+ external register_service_worker : unit => unit = "" [@@bs.module "./registerServiceWorker"];  
 
 let router =
   DirectorRe.makeRouter {
