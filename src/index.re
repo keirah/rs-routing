@@ -1,13 +1,34 @@
-[%bs.raw {|require('./index.css')|}];
+ /* [%bs.raw {|require('./index.css')|}]; */
 
-external register_service_worker : unit => unit = "" [@@bs.module "./registerServiceWorker"];
+type routes = 
+  | HomeRoute
+  | UserRoute int;
+/* external register_service_worker : unit => unit = "" [@@bs.module "./registerServiceWorker"];  */
 
-let renderForRoute element => ReactDOMRe.renderToElementWithId element "index";
-
-let router = DirectorRe.makeRouter {
-  "/": fun () => renderForRoute <Home />,
-  "/user": fun () => renderForRoute <User />
+let router =
+  DirectorRe.makeRouter {
+    "/": "home" ,
+    "/user/:userID": "user"
+  };
+let renderForRoute route => {
+  let element = switch route {
+    | HomeRoute => <Home router={router} />
+    | UserRoute userID => <User router={router} userID={userID} />
+  };
+  ReactDOMRe.renderToElementWithId element "root";
 };
 
-DirectorRe.init router "/";
-ReactDOMRe.renderToElementWithId <Home /> "root";
+let handlers = {
+  "home": fun () => {
+    renderForRoute HomeRoute
+  },
+  "user": fun (userID: string) => {
+    renderForRoute (UserRoute (int_of_string userID))
+  }
+};
+
+DirectorRe.configure router {
+  "html5history": true,
+  "resource": handlers
+};
+DirectorRe.init router "/"; 
