@@ -1,0 +1,14 @@
+{
+  "name": "reason-scripts",
+  "sources": [
+    "src"
+  ],
+  "bs-dependencies": [
+    "reason-react",
+    "bs-jest",
+    "bs-director"
+  ],
+  "reason": {
+    "react-jsx": 2
+  }
+}

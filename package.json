@@ -1,0 +1,25 @@
+{
+  "name": "rs-routing",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bs-director": "^0.0.4",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "reason-scripts": "0.6.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "prepare": "npm link bs-platform"
+  },
+  "devDependencies": {
+    "bs-jest": "^0.1.0",
+    "flow-bin": "^0.51.1",
+    "flow-typed": "^2.1.5",
+    "reason-react": "^0.2.3",
+    "reasonably-typed": "^0.10.0"
+  }
+}
